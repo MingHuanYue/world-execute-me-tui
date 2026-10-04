@@ -1,13 +1,25 @@
-# 运行时真正 import 的全部第三方库（用 ast 扫过仓库，实测）
+# Runtime dependencies - verified against actual imports (ast scan of the repo).
+#
+# NOTE: this file is intentionally pure ASCII. pip reads requirement files
+# with the *locale* encoding (GBK on Chinese Windows), so non-ASCII comments
+# here make 'pip install -r requirements.txt' fail with a UnicodeDecodeError.
+
 Pillow==12.3.0
 numpy==2.4.4
-imageio-ffmpeg==0.6.0     # 关键：自带 FFmpeg 7.1（libx264/libx264rgb/aac/h264_nvenc 齐全）
+imageio-ffmpeg==0.6.0
 
-# 为什么必须用它：本机系统 PATH 里的 ffmpeg 不可用（GPT-SoVITS 那套 configure 带
-# --disable-libx264），全部编码走 imageio_ffmpeg.get_ffmpeg_exe()。
-# 装不进 C 盘时：pip install --target <workspace>\_vendor imageio-ffmpeg==0.6.0
-#            config.py 会自动挂载 _vendor/；也可用环境变量 DSH_FFMPEG 指定。
+# Why imageio-ffmpeg is required:
+#   All encoding goes through imageio_ffmpeg.get_ffmpeg_exe(). The ffmpeg on
+#   your PATH frequently lacks libx264, which would silently produce broken
+#   output. imageio-ffmpeg ships its own ffmpeg 7.1 with libx264 / aac /
+#   h264_nvenc.
 #
-# 可选：只有重新生成 data/timeline.json（BPM/节拍分析）时才需要，出片不需要
+# If pip cannot write to your user site-packages, install to a folder instead:
+#   pip install --target <somewhere>/_vendor imageio-ffmpeg==0.6.0
+#   (config.py auto-adds a _vendor/ folder sitting next to the repo)
+#   Or point the DSH_FFMPEG environment variable at any ffmpeg with libx264.
+
+# Optional - only needed to regenerate data/timeline.json (BPM / beat analysis).
+# Not required to render the film.
 # scipy
 # librosa

@@ -7,6 +7,7 @@ venv/
 
 # --- 依赖兜底目录（pip install --target 用，见 README）---
 _vendor/
+.pip-cache/
 
 # --- 渲染产物 ---
 out/
