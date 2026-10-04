@@ -1,0 +1,13 @@
+# 运行时真正 import 的全部第三方库（用 ast 扫过仓库，实测）
+Pillow==12.3.0
+numpy==2.4.4
+imageio-ffmpeg==0.6.0     # 关键：自带 FFmpeg 7.1（libx264/libx264rgb/aac/h264_nvenc 齐全）
+
+# 为什么必须用它：本机系统 PATH 里的 ffmpeg 不可用（GPT-SoVITS 那套 configure 带
+# --disable-libx264），全部编码走 imageio_ffmpeg.get_ffmpeg_exe()。
+# 装不进 C 盘时：pip install --target <workspace>\_vendor imageio-ffmpeg==0.6.0
+#            config.py 会自动挂载 _vendor/；也可用环境变量 DSH_FFMPEG 指定。
+#
+# 可选：只有重新生成 data/timeline.json（BPM/节拍分析）时才需要，出片不需要
+# scipy
+# librosa

@@ -1,0 +1,29 @@
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# --- 依赖兜底目录（pip install --target 用，见 README）---
+_vendor/
+
+# --- 渲染产物 ---
+out/
+*.log
+
+# --- 参考素材（分析用，不分发）---
+_ref/
+
+# --- 音频：本仓库不分发任何音乐，使用者自备 ---
+assets/audio/*.mp3
+assets/audio/*.m4a
+assets/audio/*.wav
+assets/audio/*.flac
+
+# --- 本地导入的歌词：版权不属于本仓库，绝不提交 ---
+assets/lyrics/lyrics.json
+
+# --- 系统 ---
+.DS_Store
+Thumbs.db

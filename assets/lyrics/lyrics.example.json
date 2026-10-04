@@ -1,0 +1,26 @@
+{
+  "_note": "占位示例，展示 schema。真实歌词请写进 lyrics.json（本文件不会被读取）。",
+  "meta": {
+    "lang": [
+      "en",
+      "zh"
+    ]
+  },
+  "lines": [
+    {
+      "i": 0,
+      "en": "<line 0 english placeholder>",
+      "zh": "<第 0 行中文占位>"
+    },
+    {
+      "i": 1,
+      "en": "<line 1 english placeholder>",
+      "zh": "<第 1 行中文占位>"
+    },
+    {
+      "i": 2,
+      "en": "<line 2 english placeholder>",
+      "zh": "<第 2 行中文占位>"
+    }
+  ]
+}
