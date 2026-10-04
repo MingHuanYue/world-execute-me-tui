@@ -50,7 +50,27 @@
 **⑤ 它不是什么**
 不是实时渲染、不是 Web 应用、不是视频编辑器。
 它是**离线的、确定性的、逐帧算出来的**——所以同一个 `t` 永远给同一帧。
-## 快速开始
+## 一键构建（推荐）
+
+**Windows**：双击 **`run.cmd`**
+**macOS / Linux**：`./run.sh`
+
+脚本会自动跑完：检查 Python 版本 → 建 `.venv` → 装依赖 → 检查素材 → 环境自检 → 渲染成片。
+**双击就行，不需要先懂 Python。**
+
+```bash
+./run.sh --4k        # 另出原生 3840x2160
+./run.sh --check     # 只做环境自检，不渲染（约 10 秒）
+./run.sh --no-install   # 依赖已装好时跳过安装
+```
+
+**首次运行**会创建 `.venv` 并下载依赖（约 1–2 分钟）。之后都是秒进。
+
+> `requirements.txt` 刻意写成**纯 ASCII**：pip 读它时用的是**系统区域编码**
+> （中文 Windows 上是 GBK），文件里带中文注释会让 `pip install -r` 直接抛
+> `UnicodeDecodeError`。同理 `run.cmd` 也是纯 ASCII + CRLF。
+
+## 手动构建
 
 ```bash
 pip install -r requirements.txt
